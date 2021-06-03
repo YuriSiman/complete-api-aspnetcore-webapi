@@ -24,7 +24,11 @@ git clone https://github.com/YuriSiman/complete-api-aspnetcore-webapi.git
 - [x] [Definir as entidades da aplicação](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#definir-as-entidades-da-aplicação)  
 - [x] [Configurando Variáveis de Ambiente](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurando-variáveis-de-ambiente)  
 - [x] [Configurations](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurations)  
+- [x] [Configurar seu DbContext](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurar-seu-dbcontext)  
+- [x] [Gerar Migrations, Data Base e Scripts](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#gerar-migrations-data-base-e-scripts)  
 - [x] [ViewModels ou DTOs](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#viewmodels-ou-dtos)  
+- [x] [AutoMapper](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#automapper)  
+- [x] [Controllers](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#controllers)  
 
 ---
 
@@ -48,7 +52,9 @@ Pacotes a serem instalados pelo Package Manager Console ou Manage NuGet Packages
 
 Projeto - Camada Api  
 ```
-
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Design
+Install-Package Automapper.Extensions.Microsoft.DependencyInjection
 ```
   
 Projeto - Camada Data  
@@ -184,7 +190,7 @@ Implementando pasta Configurations onde serão criadas as classes de configuraç
 DbContextConfig:
 
 ```
-namespace CompleteApp.App.Configurations
+namespace CompleteApi.Api.Configurations
 {
     public static class DbContextConfig
     {
@@ -212,9 +218,108 @@ Exemplos de Configurations a serem implementadas:
 
 - DbContextConfig
 - DependencyInjectionConfig
-- GlobalizationConfig
-- IdentityConfig
+- SwaggerConfig
 - MvcConfig
+
+* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+
+---
+
+## Configurar seu DbContext
+
+#### Contexto de Dados
+
+O seu contexto de dados deve herdar da classe DbContext, implementando as propriedades DbSet referente a cada entidade da sua aplicação. Deve-se sobrescrever o método OnModelCreating, para que nele possamos pegar nosso contexto de dados, buscar todas as entidades mapeadas pelo DbSet e buscar classes que implementam a interface IEntityTypeConfiguration, ou seja, ele pegará cada um dos Mappings a serem implementados e fará o mapeamento de uma vez só.  
+
+No método OnModelCreating também podemos **desabilitar** o **Cascade Delete**, ou seja, desabilitar a exclusão de objetos ligados diretamente a uma outra entidade. Ex: excluir um fornecedor e todos os seus produtos juntos.
+
+#### Configurando seu DbContext na configuração da classe Startup - DbContextConfig
+
+É necessário configurar o serviço do seu contexto de dados dentro da sua classe Startup, no método ConfigureServices. Para isso, iremos implementar dentro da classe de configuração DbContextConfig. Segue exemplo de implementação abaixo.
+
+DbContextConfig:
+
+```
+namespace CompleteApi.Api.Configurations
+{
+    public static class DbContextConfig
+    {
+        public static IServiceCollection AddDbContextConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<MvcDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            return services;
+        }
+    }
+}
+```
+
+Startup:
+
+```
+	services.AddDbContextConfiguration(Configuration);
+
+```
+
+Também é preciso configurar o serviço para injeção de dependência do seu DbContext na classe Startup, no método ConfigureServices, para isso, criaremos uma nova classe de configuração chamada DependencyInjectionConfig. E lá, faremos a injeção de dependência.
+
+```
+namespace CompleteApi.Api.Configurations
+{
+    public static class DependencyInjectionConfig
+    {
+        public static IServiceCollection ResolveDependencies(this IServiceCollection services)
+        {
+            services.AddScoped<MvcDbContext>();
+
+            return services;
+        }
+    }
+}
+```
+
+Depois, chamaremos o serviço dentro da Startup:
+
+``` 
+	services.ResolveDependencies();
+```
+
+#### Configurando o arquivo appsettings.json
+
+Após a implementação do DbContext na Startup, é necessário passar as informações do banco de dados na **ConnectionStrings** dentro do arquivo appsettings.json. Essa **ConnectionString** possui a **DefaultConnection** que é chamada dentro do serviço que adiciona o seu contexto de dados na sua classe Startup.  
+
+```
+"ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SeuDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+```
+
+* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+
+---
+
+## Gerar Migrations, Data Base e Scripts
+
+Package Manager Console  
+
+Gerando Migrations  
+
+```
+Add-Migration NomeMigration -Context SeuDbContext
+```
+
+Gerando Base de Dados  
+
+```
+Update-Database -Context SeuDbContext
+```
+
+Gerando Scripts Idempotentes  
+
+```
+Script-Migration -Idempotent
+```
 
 * [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
 
@@ -225,6 +330,50 @@ Exemplos de Configurations a serem implementadas:
 Implementar nossas ViewsModels para não expor diretamente nossas entidades para a camada de apresentação da API, nós podemos personalizar a forma como queremos tratar as propriedades de nossas Models por meio de ViewModels (DTOs).
 
 Obs: Tomar cuidado com referências cíclicas dentro das ViewModels (DTOs), pois, na hora de formatar o JSON, caso duas DTOs possuam uma referência para cada uma, seria como um nó dentro de outro nó em um loop infinito. Então não precisamos carregar o tipo da entidade, e sim, por exemplo, somente o seu nome (ou outra propriedade).
+
+* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+
+---
+
+## AutoMapper
+
+Package Manager Console  
+
+Projeto - Camada App  
+
+```
+Install-Package Automapper.Extensions.Microsoft.DependencyInjection
+```
+
+Fazendo a transformação de **ViewModel** para **Model** e **Model** para **ViewModel** com **Automapper**.
+
+#### Configurando o Automapper na classe Startup
+
+É preciso configurar o serviço do AutoMapper na classe Startup, no método ConfigureServices, conforme o exemplo abaixo:  
+
+```
+services.AddAutoMapper(typeof(Startup));
+```
+
+Devemos criar uma classe AutoMapperConfig para configuração do Automapper, a classe deverá herdar de **Profile**. Nesta classe será definido o mapeamento das ViewModels e Models, segue exemplo abaixo:  
+
+```
+public AutoMapperConfig()
+        {
+            CreateMap<Fornecedor, FornecedorViewModel>().ReverseMap();
+            CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
+            CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+            CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
+        }
+```
+
+* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+
+---
+
+## Controllers
+
+Ao criar cada Controller nós devemos chamar o repositório referente a cada uma delas pela interface para que tenhamos o meio de acesso a dados, também chamaremos nosso AutoMapper para fazer o mapeamento de Model e ViewModel.
 
 * [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
 
