@@ -1,11 +1,9 @@
 ﻿using CompleteApi.Business.Interfaces;
+using CompleteApi.Business.Notifications;
+using CompleteApi.Business.Services;
 using CompleteApi.Data.Context;
 using CompleteApi.Data.Repository;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CompleteApi.Api.Configurations
 {
@@ -19,6 +17,12 @@ namespace CompleteApi.Api.Configurations
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+            services.AddScoped<IFornecedorService, FornecedorService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<ICategoriaService, CategoriaService>();
+
+            services.AddScoped<INotificador, Notificador>();
 
             return services;
         }
