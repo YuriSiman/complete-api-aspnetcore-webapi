@@ -16,10 +16,10 @@ namespace CompleteApi.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Categoria", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Categoria", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace CompleteApi.Data.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Endereco", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Endereco", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace CompleteApi.Data.Migrations
                     b.ToTable("Enderecos");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Fornecedor", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Fornecedor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +110,7 @@ namespace CompleteApi.Data.Migrations
                     b.ToTable("Fornecedores");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Produto", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Produto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,24 +152,24 @@ namespace CompleteApi.Data.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Endereco", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Endereco", b =>
                 {
-                    b.HasOne("CompleteApp.Business.Models.Fornecedor", "Fornecedor")
+                    b.HasOne("CompleteApi.Business.Models.Fornecedor", "Fornecedor")
                         .WithOne("Endereco")
-                        .HasForeignKey("CompleteApp.Business.Models.Endereco", "FornecedorId")
+                        .HasForeignKey("CompleteApi.Business.Models.Endereco", "FornecedorId")
                         .IsRequired();
 
                     b.Navigation("Fornecedor");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Produto", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Produto", b =>
                 {
-                    b.HasOne("CompleteApp.Business.Models.Categoria", "Categoria")
+                    b.HasOne("CompleteApi.Business.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
                         .HasForeignKey("CategoriaId")
                         .IsRequired();
 
-                    b.HasOne("CompleteApp.Business.Models.Fornecedor", "Fornecedor")
+                    b.HasOne("CompleteApi.Business.Models.Fornecedor", "Fornecedor")
                         .WithMany("Produtos")
                         .HasForeignKey("FornecedorId")
                         .IsRequired();
@@ -179,12 +179,12 @@ namespace CompleteApi.Data.Migrations
                     b.Navigation("Fornecedor");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Categoria", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Categoria", b =>
                 {
                     b.Navigation("Produtos");
                 });
 
-            modelBuilder.Entity("CompleteApp.Business.Models.Fornecedor", b =>
+            modelBuilder.Entity("CompleteApi.Business.Models.Fornecedor", b =>
                 {
                     b.Navigation("Endereco");
 
