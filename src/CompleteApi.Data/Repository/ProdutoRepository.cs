@@ -11,7 +11,7 @@ namespace CompleteApi.Data.Repository
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
-        public ProdutoRepository(MvcDbContext context) : base(context) { }
+        public ProdutoRepository(ApiDbContext context) : base(context) { }
 
         public async Task<Produto> ObterProdutoFornecedorCategoria(Guid id)
         {

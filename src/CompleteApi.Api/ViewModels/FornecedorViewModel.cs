@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CompleteApi.Api.ViewModels
 {
@@ -24,5 +26,6 @@ namespace CompleteApi.Api.ViewModels
         public bool Ativo { get; set; }
 
         public IEnumerable<ProdutoViewModel> Produtos { get; set; }
+
     }
 }

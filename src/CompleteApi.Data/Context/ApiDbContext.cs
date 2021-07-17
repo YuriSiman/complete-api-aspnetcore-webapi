@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace CompleteApi.Data.Context
 {
-    public class MvcDbContext : DbContext
+    public class ApiDbContext : DbContext
     {
-        public MvcDbContext(DbContextOptions<MvcDbContext> options) : base(options) { }
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options) { }
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
@@ -15,7 +15,7 @@ namespace CompleteApi.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MvcDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApiDbContext).Assembly);
 
             // Desabilitando o Delete Cascade
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;

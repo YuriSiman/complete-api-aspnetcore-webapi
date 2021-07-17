@@ -9,7 +9,7 @@ namespace CompleteApi.Data.Repository
 {
     public class FornecedorRepository : Repository<Fornecedor>, IFornecedorRepository
     {
-        public FornecedorRepository(MvcDbContext context) : base(context) { }
+        public FornecedorRepository(ApiDbContext context) : base(context) { }
 
         public async Task<Fornecedor> ObterFornecedorEndereco(Guid id)
         {

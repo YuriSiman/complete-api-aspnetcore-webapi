@@ -12,10 +12,10 @@ namespace CompleteApi.Data.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
-        protected readonly MvcDbContext Db;
+        protected readonly ApiDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
 
-        protected Repository(MvcDbContext db)
+        protected Repository(ApiDbContext db)
         {
             Db = db;
             DbSet = db.Set<TEntity>();

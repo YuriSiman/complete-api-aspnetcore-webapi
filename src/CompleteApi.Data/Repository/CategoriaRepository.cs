@@ -9,7 +9,7 @@ namespace CompleteApi.Data.Repository
 {
     public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     {
-        public CategoriaRepository(MvcDbContext options) : base(options) { }
+        public CategoriaRepository(ApiDbContext options) : base(options) { }
 
         public Task<Categoria> ObterCategoriaProdutos(Guid id)
         {
