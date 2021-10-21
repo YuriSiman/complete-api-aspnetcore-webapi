@@ -13,13 +13,15 @@ namespace CompleteApi.Data.Repository
 
         public async Task<Fornecedor> ObterFornecedorEndereco(Guid id)
         {
-            return await Db.Fornecedores.AsNoTracking().Include(f => f.Endereco)
+            return await Db.Fornecedores.AsNoTracking()
+                .Include(f => f.Endereco)
                 .FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id)
         {
-            return await Db.Fornecedores.AsNoTracking().Include(f => f.Produtos)
+            return await Db.Fornecedores.AsNoTracking()
+                .Include(f => f.Produtos)
                 .Include(f => f.Endereco).FirstOrDefaultAsync(f => f.Id == id);
 
         }

@@ -1,4 +1,6 @@
 ﻿using CompleteApi.Business.Interfaces;
+using CompleteApi.Business.Notifications;
+using CompleteApi.Business.Services;
 using CompleteApi.Data.Context;
 using CompleteApi.Data.Repository;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +13,16 @@ namespace CompleteApi.Api.Configurations
         {
             services.AddScoped<ApiDbContext>();
 
+            services.AddScoped<INotificador, Notificador>();
+
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+            services.AddScoped<IFornecedorService, FornecedorService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<ICategoriaService, CategoriaService>();
 
             return services;
         }

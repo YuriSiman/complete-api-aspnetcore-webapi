@@ -20,6 +20,7 @@ namespace CompleteApi.Api
             services.AddDbContextConfiguration(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddMvcConfiguration();
+            services.AddApiBehaviorOptionsConfiguration();
             services.ResolveDependencies();
             services.AddSwaggerConfiguration();
         }
