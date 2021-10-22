@@ -1,4 +1,5 @@
-﻿using CompleteApi.Business.Interfaces;
+﻿using CompleteApi.Api.Extensions;
+using CompleteApi.Business.Interfaces;
 using CompleteApi.Business.Notifications;
 using CompleteApi.Business.Services;
 using CompleteApi.Data.Context;
@@ -12,6 +13,8 @@ namespace CompleteApi.Api.Configurations
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<ApiDbContext>();
+
+            services.AddScoped<UploadFile>();
 
             services.AddScoped<INotificador, Notificador>();
 

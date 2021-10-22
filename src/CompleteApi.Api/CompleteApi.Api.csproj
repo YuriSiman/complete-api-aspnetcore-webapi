@@ -18,4 +18,8 @@
     <ProjectReference Include="..\CompleteApi.Data\CompleteApi.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>
