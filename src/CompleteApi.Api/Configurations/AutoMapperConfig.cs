@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CompleteApi.Api.ViewModels;
-using CompleteApi.Business.Models;
+using CompleteApi.Domain.Models;
 
 namespace CompleteApi.Api.Configurations
 {

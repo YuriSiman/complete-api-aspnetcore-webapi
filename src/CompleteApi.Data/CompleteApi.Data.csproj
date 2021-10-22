@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompleteApi.Business\CompleteApi.Business.csproj" />
+    <ProjectReference Include="..\CompleteApi.Domain\CompleteApi.Domain.csproj" />
   </ItemGroup>
 
 </Project>

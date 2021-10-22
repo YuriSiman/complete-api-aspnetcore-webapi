@@ -1,4 +1,4 @@
-﻿using CompleteApi.Business.Models;
+﻿using CompleteApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

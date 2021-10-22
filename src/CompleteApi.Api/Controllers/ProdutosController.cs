@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using CompleteApi.Api.Extensions;
 using CompleteApi.Api.ViewModels;
-using CompleteApi.Business.Interfaces;
-using CompleteApi.Business.Models;
+using CompleteApi.Domain.Interfaces;
+using CompleteApi.Domain.Models;
+using CompleteApi.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
-﻿using CompleteApi.Business.Interfaces;
-using CompleteApi.Business.Models;
+﻿using CompleteApi.Domain.Interfaces;
+using CompleteApi.Domain.Models;
 using CompleteApi.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;

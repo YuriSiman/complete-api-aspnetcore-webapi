@@ -1,9 +1,10 @@
 ﻿using CompleteApi.Api.Extensions;
-using CompleteApi.Business.Interfaces;
-using CompleteApi.Business.Notifications;
-using CompleteApi.Business.Services;
 using CompleteApi.Data.Context;
 using CompleteApi.Data.Repository;
+using CompleteApi.Domain.Interfaces;
+using CompleteApi.Service.Interfaces;
+using CompleteApi.Service.Notifications;
+using CompleteApi.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CompleteApi.Api.Configurations

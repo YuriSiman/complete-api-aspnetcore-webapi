@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompleteApi.Business\CompleteApi.Business.csproj" />
     <ProjectReference Include="..\CompleteApi.Data\CompleteApi.Data.csproj" />
+    <ProjectReference Include="..\CompleteApi.Domain\CompleteApi.Domain.csproj" />
+    <ProjectReference Include="..\CompleteApi.Service\CompleteApi.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

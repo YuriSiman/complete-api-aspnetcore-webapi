@@ -1,5 +1,5 @@
-﻿using CompleteApi.Business.Interfaces;
-using CompleteApi.Business.Notifications;
+﻿using CompleteApi.Service.Interfaces;
+using CompleteApi.Service.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
