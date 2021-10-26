@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -6,19 +6,22 @@ namespace CompleteApi.Api.Extensions
 {
     public class UploadFile
     {
-        public async Task<bool> UploadArquivo(string arquivo, string imgNome)
+        public async Task<bool> UploadArquivo(IFormFile arquivo, string imgNome)
         {
-            var imageDataByteArray = Convert.FromBase64String(arquivo);
+            //var imageDataByteArray = Convert.FromBase64String(arquivo);
 
-            if (string.IsNullOrEmpty(arquivo)) return false;
+            if (arquivo == null || arquivo.Length == 0) return false;
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", imgNome);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", imgNome + arquivo.FileName);
 
             if (File.Exists(filePath)) return false;
 
-            await File.WriteAllBytesAsync(filePath, imageDataByteArray);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await arquivo.CopyToAsync(stream);
+            }
 
-            return true;
+                return true;
         }
     }
 }

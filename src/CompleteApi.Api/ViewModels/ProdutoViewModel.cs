@@ -1,8 +1,13 @@
-﻿using System;
+﻿using CompleteApi.Api.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CompleteApi.Api.ViewModels
 {
+    // Binder personalizado para envio de IFormFile e ViewModel dentro de um FormData (system.text.json)
+    [ModelBinder(BinderType = typeof(JsonWithFilesFormDataModelBinder))]
     public class ProdutoViewModel
     {
         [Key]
@@ -16,7 +21,7 @@ namespace CompleteApi.Api.ViewModels
         [StringLength(1000, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Descricao { get; set; }
 
-        public string ImagemUpload { get; set; }
+        public IFormFile ImagemUpload { get; set; }
 
         public string Imagem { get; set; }
 

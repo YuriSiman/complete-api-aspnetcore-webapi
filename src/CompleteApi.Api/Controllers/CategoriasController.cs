@@ -82,6 +82,5 @@ namespace CompleteApi.Api.Controllers
         {
             return _mapper.Map<CategoriaViewModel>(await _categoriaRepository.ObterCategoriaProdutos(id));
         }
-        
     }
 }
