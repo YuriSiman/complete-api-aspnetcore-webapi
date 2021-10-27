@@ -1,4 +1,5 @@
 ﻿using CompleteApi.Identity.Context;
+using CompleteApi.Identity.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace CompleteApi.Api.Configurations
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<TranslatePortugues>()
                 .AddDefaultTokenProviders();
 
             return services;
