@@ -18,6 +18,7 @@ namespace CompleteApi.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextConfiguration(Configuration);
+            services.AddIdentityConfiguration(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddMvcConfiguration();
             services.AddApiBehaviorOptionsConfiguration();
@@ -27,6 +28,7 @@ namespace CompleteApi.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseIdentityConfiguration();
             app.UseMvcConfiguration(env);
         }
     }

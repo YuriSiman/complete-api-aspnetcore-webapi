@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CompleteApi.Data\CompleteApi.Data.csproj" />
     <ProjectReference Include="..\CompleteApi.Domain\CompleteApi.Domain.csproj" />
+    <ProjectReference Include="..\CompleteApi.Identity\CompleteApi.Identity.csproj" />
     <ProjectReference Include="..\CompleteApi.Service\CompleteApi.Service.csproj" />
   </ItemGroup>
 

@@ -3,6 +3,7 @@ using CompleteApi.Api.ViewModels;
 using CompleteApi.Domain.Interfaces;
 using CompleteApi.Domain.Models;
 using CompleteApi.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CompleteApi.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class CategoriasController : MainController
     {
@@ -24,6 +26,7 @@ namespace CompleteApi.Api.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<CategoriaViewModel>> ObterTodos()
         {
