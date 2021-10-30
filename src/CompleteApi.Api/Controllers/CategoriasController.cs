@@ -2,6 +2,7 @@
 using CompleteApi.Api.ViewModels;
 using CompleteApi.Domain.Interfaces;
 using CompleteApi.Domain.Models;
+using CompleteApi.Identity.Extensions;
 using CompleteApi.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,6 @@ namespace CompleteApi.Api.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<CategoriaViewModel>> ObterTodos()
         {
@@ -43,6 +43,7 @@ namespace CompleteApi.Api.Controllers
             return Ok(categoriaViewModel);
         }
 
+        [ClaimsAuthorize("Categoria","Adicionar")]
         [HttpPost]
         public async Task<ActionResult<CategoriaViewModel>> Adicionar(CategoriaViewModel categoriaViewModel)
         {
@@ -53,6 +54,7 @@ namespace CompleteApi.Api.Controllers
             return CustomResponse(categoriaViewModel);
         }
 
+        [ClaimsAuthorize("Categoria", "Atualizar")]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<CategoriaViewModel>> Atualizar(Guid id, CategoriaViewModel categoriaViewModel)
         {
@@ -69,6 +71,7 @@ namespace CompleteApi.Api.Controllers
             return CustomResponse(categoriaViewModel);
         }
 
+        [ClaimsAuthorize("Categoria", "Excluir")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<CategoriaViewModel>> Excluir(Guid id)
         {

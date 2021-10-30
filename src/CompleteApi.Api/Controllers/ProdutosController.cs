@@ -3,7 +3,9 @@ using CompleteApi.Api.Extensions;
 using CompleteApi.Api.ViewModels;
 using CompleteApi.Domain.Interfaces;
 using CompleteApi.Domain.Models;
+using CompleteApi.Identity.Extensions;
 using CompleteApi.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace CompleteApi.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ProdutosController : MainController
     {
@@ -44,6 +47,7 @@ namespace CompleteApi.Api.Controllers
             return produtoViewModel;
         }
 
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [HttpPost]
         public async Task<ActionResult<ProdutoViewModel>> Adicionar([ModelBinder(BinderType = typeof(JsonWithFilesFormDataModelBinder))] ProdutoViewModel produtoViewModel)
         {
@@ -57,14 +61,14 @@ namespace CompleteApi.Api.Controllers
             return CustomResponse(produtoViewModel);
         }
 
-        [RequestSizeLimit(40000000)]
-        //[DisableRequestSizeLimit]
+        [RequestSizeLimit(40000000)] //[DisableRequestSizeLimit]
         [HttpPost("imagem")]
         public ActionResult AdicionarImagem(IFormFile file)
         {
             return Ok(file);
         }
 
+        [ClaimsAuthorize("Produto", "Atualizar")]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult> Atualizar(Guid id, ProdutoViewModel produtoViewModel)
         {
@@ -84,6 +88,7 @@ namespace CompleteApi.Api.Controllers
             return CustomResponse(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Excluir")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProdutoViewModel>> Excluir(Guid id)
         {
