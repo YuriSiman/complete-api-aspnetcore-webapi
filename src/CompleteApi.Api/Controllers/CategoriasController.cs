@@ -20,7 +20,7 @@ namespace CompleteApi.Api.Controllers
         private readonly ICategoriaService _categoriaService;
         private readonly IMapper _mapper;
 
-        public CategoriasController(ICategoriaRepository categoriaRepository, ICategoriaService categoriaService, IMapper mapper, INotificador notificador) : base (notificador)
+        public CategoriasController(ICategoriaRepository categoriaRepository, ICategoriaService categoriaService, IMapper mapper, INotificador notificador, IUser user) : base (notificador, user)
         {
             _categoriaRepository = categoriaRepository;
             _categoriaService = categoriaService;

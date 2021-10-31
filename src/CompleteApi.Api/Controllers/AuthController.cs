@@ -1,5 +1,6 @@
 ﻿using CompleteApi.Api.Extensions;
 using CompleteApi.Api.ViewModels.UserViewModels;
+using CompleteApi.Domain.Interfaces;
 using CompleteApi.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace CompleteApi.Api.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AuthController(INotificador notificador, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings) : base(notificador)
+        public AuthController(INotificador notificador, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IUser user) : base(notificador, user)
         {
             _signInManager = signInManager;
             _userManager = userManager;

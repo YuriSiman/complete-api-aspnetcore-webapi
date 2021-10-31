@@ -1,7 +1,9 @@
-﻿using CompleteApi.Service.Interfaces;
+﻿using CompleteApi.Domain.Interfaces;
+using CompleteApi.Service.Interfaces;
 using CompleteApi.Service.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Linq;
 
 namespace CompleteApi.Api.Controllers
@@ -10,10 +12,21 @@ namespace CompleteApi.Api.Controllers
     public abstract class MainController : ControllerBase
     {
         private readonly INotificador _notificador;
+        public readonly IUser AppUser;
 
-        public MainController(INotificador notificador)
+        protected Guid UsuarioId { get; set; }
+        protected bool UsuarioAutenticado { get; set; }
+
+        public MainController(INotificador notificador, IUser appUser)
         {
             _notificador = notificador;
+            AppUser = appUser;
+
+            if (appUser.IsAuthenticated())
+            {
+                UsuarioId = appUser.GetUserId();
+                UsuarioAutenticado = true;
+            }
         }
 
         protected bool OperacaoValida()

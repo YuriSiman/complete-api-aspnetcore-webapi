@@ -23,7 +23,7 @@ namespace CompleteApi.Api.Controllers
         private readonly IMapper _mapper;
         private readonly UploadFile _uploadFile;
 
-        public ProdutosController(IProdutoRepository produtoRepository, IProdutoService produtoService, IMapper mapper, UploadFile uploadFile, INotificador notificador) : base(notificador)
+        public ProdutosController(IProdutoRepository produtoRepository, IProdutoService produtoService, IMapper mapper, UploadFile uploadFile, INotificador notificador, IUser user) : base(notificador, user)
         {
             _produtoRepository = produtoRepository;
             _produtoService = produtoService;

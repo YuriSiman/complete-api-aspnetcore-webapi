@@ -2,9 +2,11 @@
 using CompleteApi.Data.Context;
 using CompleteApi.Data.Repository;
 using CompleteApi.Domain.Interfaces;
+using CompleteApi.Identity.Extensions;
 using CompleteApi.Service.Interfaces;
 using CompleteApi.Service.Notifications;
 using CompleteApi.Service.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CompleteApi.Api.Configurations
@@ -27,6 +29,9 @@ namespace CompleteApi.Api.Configurations
             services.AddScoped<IFornecedorService, FornecedorService>();
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
 
             return services;
         }

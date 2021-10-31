@@ -21,7 +21,7 @@ namespace CompleteApi.Api.Controllers
         private readonly IEnderecoRepository _enderecoRepository;
         private readonly IMapper _mapper;
 
-        public FornecedoresController(IFornecedorRepository fornecedorRepository, IFornecedorService fornecedorService, IEnderecoRepository enderecoRepository, IMapper mapper, INotificador notificador) : base (notificador)
+        public FornecedoresController(IFornecedorRepository fornecedorRepository, IFornecedorService fornecedorService, IEnderecoRepository enderecoRepository, IMapper mapper, INotificador notificador, IUser user) : base (notificador, user)
         {
             _fornecedorRepository = fornecedorRepository;
             _fornecedorService = fornecedorService;
