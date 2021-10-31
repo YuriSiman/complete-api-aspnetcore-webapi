@@ -20,6 +20,10 @@ namespace CompleteApi.Api.Configurations
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerConfiguration();
             }
+            //else
+            //{
+            //    app.UseHsts();
+            //}
 
             app.UseHttpsRedirection();
 
