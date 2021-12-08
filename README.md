@@ -3,7 +3,7 @@
 <br/>
 <div align="center">
     <img src="./readme-img/csharp-original.svg" alt="Logo" width="100" height="100" />
-    <img src="./readme-img/csharp-original.svg" alt="Logo" width="100" height="100" />
+    <img src="./readme-img/dotnetcore-original.svg" alt="Logo" width="100" height="100" />
     <h1 align="center">ASP.NET Core Web API</h1>
     <p align="center">Desenvolvimento de uma Web API em ASP.NET Core</p>
 </div>
