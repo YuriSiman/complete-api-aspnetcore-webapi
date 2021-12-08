@@ -24,12 +24,14 @@ namespace CompleteApi.Api
             services.AddApiBehaviorOptionsConfiguration();
             services.ResolveDependencies();
             services.AddSwaggerConfiguration();
+            services.AddHealthChecksConfiguration(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseIdentityConfiguration();
             app.UseMvcConfiguration(env);
+            app.UseHealthChecksConfiguration();
         }
     }
 }

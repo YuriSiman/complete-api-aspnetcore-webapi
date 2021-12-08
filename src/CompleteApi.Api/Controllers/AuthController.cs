@@ -4,6 +4,7 @@ using CompleteApi.Domain.Interfaces;
 using CompleteApi.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,12 +22,14 @@ namespace CompleteApi.Api.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+        private readonly ILogger _logger;
 
-        public AuthController(INotificador notificador, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IUser user) : base(notificador, user)
+        public AuthController(INotificador notificador, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IUser user, ILogger<AuthController> logger) : base(notificador, user)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         [HttpPost("registrar")]
@@ -64,7 +67,11 @@ namespace CompleteApi.Api.Controllers
 
             var result = await _signInManager.PasswordSignInAsync(loginUserViewModel.Email, loginUserViewModel.Senha, false, true);
 
-            if (result.Succeeded) return CustomResponse(await GerarJwt(loginUserViewModel.Email));
+            if (result.Succeeded)
+            {
+                _logger.LogInformation($"Usuário {loginUserViewModel.Email} logado com sucesso");
+                return CustomResponse(await GerarJwt(loginUserViewModel.Email));
+            }
 
             if (result.IsLockedOut)
             {
