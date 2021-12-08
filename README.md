@@ -1,103 +1,168 @@
-<h1 align="center">API Completa em ASP.NET Core</h1>
+<div id="top"></div>
 
-<p align="center">Aplicação completa em ASP.NET Core Web API</p>
+<br/>
+<div align="center">
+    <img src="./readme-img/csharp-original.svg" alt="Logo" width="100" height="100" />
+    <img src="./readme-img/csharp-original.svg" alt="Logo" width="100" height="100" />
+    <h1 align="center">ASP.NET Core Web API</h1>
+    <p align="center">Desenvolvimento de uma Web API em ASP.NET Core</p>
+</div>
 
----
+<br/>
 
-### :dart: Objetivo
+<div align="center">
+    <a href="https://github.com/YuriSiman/complete-api-aspnetcore-webapi/blob/master/LICENSE" target="_blank">
+      <img alt="LICENSE" src="https://img.shields.io/badge/license-mit-%23A6CE39?style=for-the-badge&logo=github" />
+    </a>
+    <a href="https://github.com/YuriSiman" target="_blank">
+      <img alt="GitHub" src="https://img.shields.io/badge/github-perfil-%237159c1?style=for-the-badge&logo=github" />
+    </a>
+    <a href="https://yurisiman.com.br" target="_blank">
+      <img alt="Site" src="https://img.shields.io/badge/site-yurisiman-E0A80D?style=for-the-badge&logo=Purism" />
+    </a>
+    <a href="https://www.linkedin.com/in/yurisiman/" target="_blank">
+      <img alt="Linkedin" src="https://img.shields.io/badge/linkedin-social-0A66C2?style=for-the-badge&logo=LinkedIn" />
+    </a>
+    <a href="mailto:contato@yurisiman.com.br" target="_blank">
+      <img alt="Gmail" src="https://img.shields.io/badge/email-contato-EA4335?style=for-the-badge&logo=Gmail" />
+    </a>
+</div>
 
-Tenho como objetivo implementar uma API completa em ASP.NET Core com C# contendo um CRUD completo dos dados, serializando em JSON, validando JWT, utilizando Entity Framework para persistência de dados, Fluent API e outras tecnologias. 
+<br/>
 
-### Clone
+## :clipboard: Sobre o Projeto
 
-Clone este repositório em sua máquina local usando:  
+O objetivo deste projeto é implementar uma API em ASP.NET Core utilizando C#, a aplicação contém um CRUD completo dos dados, serializando em JSON, validando JWT, utilizando Entity Framework para persistência, Fluent API, HealthChecks e outras tecnologias.
 
-```
-git clone https://github.com/YuriSiman/complete-api-aspnetcore-webapi.git
-```
-
-### :pencil2: Progresso
-
-- [x] [Setup Inicial da Aplicação](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#setup-inicial-da-aplicação)  
-- [x] [Instalar Pacotes](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#instalar-pacotes)  
-- [x] [Adicionar Referências aos Projetos](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#adicionar-referências-aos-projetos)  
-- [x] [Definir as entidades da aplicação](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#definir-as-entidades-da-aplicação)  
-- [x] [Configurando Variáveis de Ambiente](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurando-variáveis-de-ambiente)  
-- [x] [Configurations](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurations)  
-- [x] [Configurar seu DbContext](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#configurar-seu-dbcontext)  
-- [x] [Gerar Migrations, Data Base e Scripts](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#gerar-migrations-data-base-e-scripts)  
-- [x] [ViewModels ou DTOs](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#viewmodels-ou-dtos)  
-- [x] [AutoMapper](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#automapper)  
-- [x] [Controllers](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#controllers)  
-
----
-
-## :rocket: Vamos Começar 
-
-## Setup Inicial da Aplicação 
-
-A aplicação consiste em três camadas:  
-
-**Api** - configuração do projeto ASP.NET Core Web API. Nele está contido as configurações da aplicação, nossas Controllers, o Identity para autenticação de usuários, configurações de ambiente, nossa classe Startup e nosso método Main. Ela será a camada que fará toda a comunicação e tráfego de dados.  
-**Business** - configuração de uma Class Library .NET Core para as regras de negócio da aplicação, camada de domínio. Onde se encontra as Entidades de negócio, notificações, validações e serviços.  
-**Data** - configuração de uma Class Library .NET Core para a camada de dados da aplicação, nele está contido o DbContext para o contexto de dados, as referências ao Entity Framework, Mappings, Migrations e Repositórios.  
-
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+Use este projeto para aprender e contribua com melhorias! Bora estudar! :computer::coffee:
 
 ---
 
-## Instalar Pacotes
+## :pencil: Pré-requisitos
 
-Pacotes a serem instalados pelo Package Manager Console ou Manage NuGet Packages:  
+1. Construído com .NET 6.0 e codificado em C#, se você não possui o dotnet instalado, acesse [aqui](https://dotnet.microsoft.com/) e instale a versão mais recente.
+2. Clone este repositório em sua máquina local
 
-Projeto - Camada Api  
-```
+   ```sh
+   git clone https://github.com/YuriSiman/complete-api-aspnetcore-webapi.git
+   ```
+
+---
+
+## :dart: Tópicos
+
+<details>
+  <summary>Configurações Iniciais</summary>
+  <ul>
+    <li><a href="#setup-inicial-da-aplicacao">Setup Inicial da Aplicação</a></li>
+    <li><a href="#instalacao-de-pacotes">Instalação de Pacotes</a></li>
+    <li><a href="#referencia-de-projetos">Referência de Projetos</a></li>
+    <li><a href="#entidades">Entidades</a></li>
+    <li><a href="#variaveis-de-ambiente">Variáveis de Ambiente</a></li>
+    <li><a href="#configurations">Configurations</a></li>
+  </ul>
+</details>
+<details>
+  <summary>Banco de Dados</summary>
+  <ul>
+    <li><a href="#dbcontext">DbContext</a></li>
+    <li><a href="#migrations">Migrations</a></li>
+    <li><a href="#mappings">Mappings</a></li>
+  </ul>
+</details>
+<details>
+  <summary>Mapeamento de Objetos</summary>
+  <ul>
+    <li><a href="#viewmodels">ViewModels (DTO)</a></li>
+    <li><a href="#automapper">AutoMapper</a></li>
+  </ul>
+</details>
+<details>
+  <summary>Controllers</summary>
+  <ul>
+
+  </ul>
+</details>
+
+---
+
+## :rocket: Vamos Começar
+
+### Configurações Iniciais
+
+<div id="setup-inicial-da-aplicacao"></div>
+
+### Setup Inicial da Aplicação    
+
+A aplicação consiste em três camadas:
+
+Api - configuração do projeto ASP.NET Core Web API. Nele está contido as configurações da aplicação, nossas Controllers, o Identity para autenticação de usuários, configurações de ambiente, nossa classe Startup e nosso método Main. Ela será a camada que fará toda a comunicação e tráfego de dados.
+
+Business - configuração de uma Class Library .NET Core para as regras de negócio da aplicação, camada de domínio. Onde se encontra as Entidades de negócio, notificações, validações e serviços.
+
+Data - configuração de uma Class Library .NET Core para a camada de dados da aplicação, nele está contido o DbContext para o contexto de dados, as referências ao Entity Framework, Mappings, Migrations e Repositórios.
+
+<p align="right"><a href="#top">Início ↑</a></p>
+
+---
+
+<div id="instalacao-de-pacotes"></div>
+
+### Instalação de Pacotes  
+
+Pacotes a serem instalados pelo Package Manager Console ou Manage NuGet Packages:
+
+Projeto - Camada Api
+
+```sh
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Install-Package Microsoft.EntityFrameworkCore.Design
 Install-Package Automapper.Extensions.Microsoft.DependencyInjection
 ```
-  
-Projeto - Camada Data  
-```
+
+Projeto - Camada Data
+
+```sh
 Install-Package Microsoft.EntityFrameworkCore
 Install-Package Microsoft.EntityFrameworkCore.Relational
 Install-Package Microsoft.EntityFrameworkCore.Tools
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## Adicionar Referências aos Projetos  
+<div id="referencia-de-projetos"></div>
 
-Projeto - Camada Api
+### Referência de Projetos
 
-- Referência com o projeto Business e Data
+Projeto - Camada Api: Referência com o projeto Business e Data  
+Projeto - Camada Data: Referência com o projeto Business  
 
-Projeto - Camada Data
-
-- Referência com o projeto Business
-
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## Definir as entidades da aplicação
+<div id="entidades"></div>
 
-Modelo Entidade-Relacionamento conforme a utilização do Entity Framework.
+### Entidades 
 
-<img src="./readme-images/entidade-relacionamento.png" />
+Modelo Entidade-Relacionamento
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<img src="./readme-img/mer.png" alt="Logo" width="500" height="500" />
+
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## Configurando Variáveis de Ambiente
+<div id="variaveis-de-ambiente"></div>
 
-Alterando o **construtor da Startup**, para que se possa permitir a configuração de **appsettings** para cada tipo de ambiente:
+### Variáveis de Ambiente  
 
-```
+Alterando o construtor da Startup, para que se possa permitir a configuração de appsettings para cada tipo de ambiente.
+
+```csharp
 public Startup(IHostEnvironment hostEnvironment)
         {
             var builder = new ConfigurationBuilder()
@@ -115,15 +180,15 @@ public Startup(IHostEnvironment hostEnvironment)
         }
 ```
 
-Craindo arquivos **appsettings** para cada tipo de ambiente: 
+Craindo arquivos appsettings para cada tipo de ambiente:
 
 - appsettings.Development.json
 - appsettings.Staging.json
 - appsettings.Production.json
 
-Modificando arquivo **launchSettings.json** para cada tipo de ambiente:
+Modificando arquivo launchSettings.json para cada tipo de ambiente:
 
-```
+```csharp
 {
   "iisSettings": {
     "windowsAuthentication": false,
@@ -179,17 +244,19 @@ Modificando arquivo **launchSettings.json** para cada tipo de ambiente:
 }
 ```
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>  
 
 ---
 
-## Configurations
+<div id="configurations"></div>
+
+### Configurations  
 
 Implementando pasta Configurations onde serão criadas as classes de configuração da Startup, tendo como objetivo desacoplar a classe Startup, deixando-a mais limpa e reduzida. As classes de Configuração precisarão implementar métodos de extensão do IServiceCollection, IConfiguration, IApplicationBuilder e IHostEnvironment. As configurações irão variar conforme a sua necessidade. Segue abaixo exemplo de configuração do DbContext.
 
 DbContextConfig:
 
-```
+```csharp
 namespace CompleteApi.Api.Configurations
 {
     public static class DbContextConfig
@@ -207,11 +274,11 @@ namespace CompleteApi.Api.Configurations
 
 Startup:
 
-```
+```csharp
 public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContextConfiguration(Configuration);
-        }
+{
+   services.AddDbContextConfiguration(Configuration);
+}
 ```
 
 Exemplos de Configurations a serem implementadas:
@@ -221,25 +288,27 @@ Exemplos de Configurations a serem implementadas:
 - SwaggerConfig
 - MvcConfig
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## Configurar seu DbContext
+### Banco de Dados
 
-#### Contexto de Dados
+<div id="dbcontext"></div>
 
-O seu contexto de dados deve herdar da classe DbContext, implementando as propriedades DbSet referente a cada entidade da sua aplicação. Deve-se sobrescrever o método OnModelCreating, para que nele possamos pegar nosso contexto de dados, buscar todas as entidades mapeadas pelo DbSet e buscar classes que implementam a interface IEntityTypeConfiguration, ou seja, ele pegará cada um dos Mappings a serem implementados e fará o mapeamento de uma vez só.  
+### DbContext    
 
-No método OnModelCreating também podemos **desabilitar** o **Cascade Delete**, ou seja, desabilitar a exclusão de objetos ligados diretamente a uma outra entidade. Ex: excluir um fornecedor e todos os seus produtos juntos.
+Contexto de Dados
+O seu contexto de dados deve herdar da classe DbContext, implementando as propriedades DbSet referente a cada entidade da sua aplicação. Deve-se sobrescrever o método OnModelCreating, para que nele possamos pegar nosso contexto de dados, buscar todas as entidades mapeadas pelo DbSet e buscar classes que implementam a interface IEntityTypeConfiguration, ou seja, ele pegará cada um dos Mappings a serem implementados e fará o mapeamento de uma vez só.
 
-#### Configurando seu DbContext na configuração da classe Startup - DbContextConfig
+No método OnModelCreating também podemos desabilitar o Cascade Delete, ou seja, desabilitar a exclusão de objetos ligados diretamente a uma outra entidade. Ex: excluir um fornecedor e todos os seus produtos juntos.
 
+Configurando seu DbContext na configuração da classe Startup - DbContextConfig
 É necessário configurar o serviço do seu contexto de dados dentro da sua classe Startup, no método ConfigureServices. Para isso, iremos implementar dentro da classe de configuração DbContextConfig. Segue exemplo de implementação abaixo.
 
 DbContextConfig:
 
-```
+```csharp
 namespace CompleteApi.Api.Configurations
 {
     public static class DbContextConfig
@@ -257,14 +326,13 @@ namespace CompleteApi.Api.Configurations
 
 Startup:
 
-```
-	services.AddDbContextConfiguration(Configuration);
-
+```csharp
+services.AddDbContextConfiguration(Configuration);
 ```
 
 Também é preciso configurar o serviço para injeção de dependência do seu DbContext na classe Startup, no método ConfigureServices, para isso, criaremos uma nova classe de configuração chamada DependencyInjectionConfig. E lá, faremos a injeção de dependência.
 
-```
+```csharp
 namespace CompleteApi.Api.Configurations
 {
     public static class DependencyInjectionConfig
@@ -281,113 +349,121 @@ namespace CompleteApi.Api.Configurations
 
 Depois, chamaremos o serviço dentro da Startup:
 
-``` 
-	services.ResolveDependencies();
+```csharp
+services.ResolveDependencies();
 ```
 
-#### Configurando o arquivo appsettings.json
+Configurando o arquivo appsettings.json
 
-Após a implementação do DbContext na Startup, é necessário passar as informações do banco de dados na **ConnectionStrings** dentro do arquivo appsettings.json. Essa **ConnectionString** possui a **DefaultConnection** que é chamada dentro do serviço que adiciona o seu contexto de dados na sua classe Startup.  
+Após a implementação do DbContext na Startup, é necessário passar as informações do banco de dados na ConnectionStrings dentro do arquivo appsettings.json. Essa ConnectionString possui a DefaultConnection que é chamada dentro do serviço que adiciona o seu contexto de dados na sua classe Startup.
 
-```
+```csharp
 "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SeuDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 ```
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## Gerar Migrations, Data Base e Scripts
+<div id="migrations"></div>
 
-Package Manager Console  
+### Migrations  
 
-Gerando Migrations  
+Package Manager Console
 
-```
+Gerando Migrations
+
+```sh
 Add-Migration NomeMigration -Context SeuDbContext
 ```
 
-Gerando Base de Dados  
+Gerando Base de Dados
 
-```
+```sh
 Update-Database -Context SeuDbContext
 ```
 
-Gerando Scripts Idempotentes  
+Gerando Scripts Idempotentes
 
-```
+```sh
 Script-Migration -Idempotent
 ```
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## ViewModels ou DTOs
+<div id="mappings"></div>
+
+### Mappings
+
+Criando o mapeamento e relacionamento das entidades no banco de dados...
+
+<p align="right"><a href="#top">Início ↑</a></p>
+
+---
+
+### Mapeamento de Objetos
+
+<div id="viewmodels"></div>
+
+### ViewModels (DTO)    
 
 Implementar nossas ViewsModels para não expor diretamente nossas entidades para a camada de apresentação da API, nós podemos personalizar a forma como queremos tratar as propriedades de nossas Models por meio de ViewModels (DTOs).
 
-Obs: Tomar cuidado com referências cíclicas dentro das ViewModels (DTOs), pois, na hora de formatar o JSON, caso duas DTOs possuam uma referência para cada uma, seria como um nó dentro de outro nó em um loop infinito. Então não precisamos carregar o tipo da entidade, e sim, por exemplo, somente o seu nome (ou outra propriedade).
+**Obs:** Tomar cuidado com referências cíclicas dentro das ViewModels (DTOs), pois, na hora de formatar o JSON, caso duas DTOs possuam uma referência para cada uma, seria como um nó dentro de outro nó em um loop infinito. Então não precisamos carregar o tipo da entidade, e sim, por exemplo, somente o seu nome (ou outra propriedade).
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
-## AutoMapper
+<div id="automapper"></div>
 
-Package Manager Console  
+### AutoMapper  
 
-Projeto - Camada App  
+Package Manager Console
 
-```
+Projeto - Camada App
+
+```sh
 Install-Package Automapper.Extensions.Microsoft.DependencyInjection
 ```
 
-Fazendo a transformação de **ViewModel** para **Model** e **Model** para **ViewModel** com **Automapper**.
+Configurando o Automapper na classe Startup
 
-#### Configurando o Automapper na classe Startup
+É preciso configurar o serviço do AutoMapper na classe Startup, no método ConfigureServices, conforme o exemplo abaixo:
 
-É preciso configurar o serviço do AutoMapper na classe Startup, no método ConfigureServices, conforme o exemplo abaixo:  
-
-```
+```csharp
 services.AddAutoMapper(typeof(Startup));
 ```
 
-Devemos criar uma classe AutoMapperConfig para configuração do Automapper, a classe deverá herdar de **Profile**. Nesta classe será definido o mapeamento das ViewModels e Models, segue exemplo abaixo:  
+Devemos criar uma classe AutoMapperConfig para configuração do Automapper, a classe deverá herdar de Profile. Nesta classe será definido o mapeamento das ViewModels e Models, segue exemplo abaixo:
 
-```
+```csharp
 public AutoMapperConfig()
-        {
-            CreateMap<Fornecedor, FornecedorViewModel>().ReverseMap();
-            CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
-            CreateMap<Produto, ProdutoViewModel>().ReverseMap();
-            CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
-        }
+{
+   CreateMap<Fornecedor, FornecedorViewModel>().ReverseMap();
+   CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
+   CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+   CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
+}
 ```
 
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
-
----
-
-## Controllers
-
-Ao criar cada Controller nós devemos chamar o repositório referente a cada uma delas pela interface para que tenhamos o meio de acesso a dados, também chamaremos nosso AutoMapper para fazer o mapeamento de Model e ViewModel.
-
-* [Voltar ao Início](https://github.com/YuriSiman/complete-api-aspnetcore-webapi#api-completa-em-aspnet-core)  
+<p align="right"><a href="#top">Início ↑</a></p>
 
 ---
 
 ## :vertical_traffic_light: Status do Projeto
 
-:construction: Projeto sendo implementado :construction:
+:construction: Projeto em construção :construction:
 
 ---
 
 ## :thinking: Contribuindo
 
-> Para começar...
+> Passo a passo de como contribuir...
 
 ### Passo 1
 
@@ -426,15 +502,16 @@ Depois que seu pull request for mesclado, você pode excluir sua feature branch
 * Me chame pelo [Linkedin](https://www.linkedin.com/in/yurisiman/)  
 * Me mande um e-mail [contato@yurisiman.com.br](mailto:contato@yurisiman.com.br)  
 
-[![Github](https://img.shields.io/badge/github-profile-%237159c1?style=for-the-badge&logo=github)](https://github.com/YuriSiman)  
-[![Curriculum](https://img.shields.io/badge/site-curriculum-%23563D7C?style=for-the-badge&logo=bootstrap)](https://yurisiman.com.br)  
-
 ---
 
 ## :pencil: Licença
 
-[![License](https://img.shields.io/badge/license-mit-%23A6CE39?style=for-the-badge&logo=github)](https://github.com/YuriSiman/complete-api-aspnetcore-webapi/blob/master/LICENSE)   
+<a href="https://github.com/YuriSiman/complete-api-aspnetcore-webapi/blob/master/LICENSE" target="_blank">
+  <img alt="LICENSE" src="https://img.shields.io/badge/license-mit-%23A6CE39?style=for-the-badge&logo=github" />
+</a>
 
----
+##
 
-Code your life...
+Code your life :octocat:
+
+<p align="right"><a href="#top">Início ↑</a></p>
